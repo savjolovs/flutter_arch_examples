@@ -9,7 +9,7 @@ class UserBlocScreen extends StatelessWidget {
     final UserBloc userBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Vanilla'),
+        title: const Text('Bloc'),
       ),
       body: SafeArea(
         child: StreamBuilder<UserState>(

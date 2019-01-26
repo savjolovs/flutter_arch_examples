@@ -7,7 +7,7 @@ class UserModelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Vanilla'),
+        title: const Text('Scoped model'),
       ),
       body: SafeArea(
         child:
