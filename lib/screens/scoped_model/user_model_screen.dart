@@ -10,18 +10,19 @@ class UserModelScreen extends StatelessWidget {
         title: const Text('Scoped model'),
       ),
       body: SafeArea(
-        child:
-            ScopedModelDescendant<UserModel>(builder: (context, child, model) {
-          if (model.isLoading) {
-            return _buildLoading();
-          } else {
-            if (model.user != null) {
-              return _buildContent(model);
+        child: ScopedModelDescendant<UserModel>(
+          builder: (context, child, model) {
+            if (model.isLoading) {
+              return _buildLoading();
             } else {
-              return _buildInit(model);
+              if (model.user != null) {
+                return _buildContent(model);
+              } else {
+                return _buildInit(model);
+              }
             }
-          }
-        }),
+          },
+        ),
       ),
     );
   }
