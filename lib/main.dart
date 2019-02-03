@@ -2,10 +2,14 @@ import 'package:arch_examples/data/repository.dart';
 import 'package:arch_examples/screens/bloc/bloc_provider.dart';
 import 'package:arch_examples/screens/bloc/user_bloc.dart';
 import 'package:arch_examples/screens/bloc/user_bloc_screen.dart';
+import 'package:arch_examples/screens/redurx/app_state.dart';
+import 'package:arch_examples/screens/redurx/middlewares.dart';
+import 'package:arch_examples/screens/redurx/user_redurx_screen.dart';
 import 'package:arch_examples/screens/scoped_model/user_model.dart';
 import 'package:arch_examples/screens/scoped_model/user_model_screen.dart';
 import 'package:arch_examples/screens/vanilla/vanilla_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redurx/flutter_redurx.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() => runApp(MyApp());
@@ -62,6 +66,14 @@ class HomePage extends StatelessWidget {
                   openBloc(context);
                 },
               ),
+              RaisedButton(
+                child: const Text(
+                  'ReduRx',
+                ),
+                onPressed: () {
+                  openReduRx(context);
+                },
+              ),
             ],
           ),
         ),
@@ -97,6 +109,18 @@ class HomePage extends StatelessWidget {
         builder: (context) => BlocProvider(
               bloc: UserBloc(_repository),
               child: UserBlocScreen(),
+            ),
+      ),
+    );
+  }
+
+  void openReduRx(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => Provider(
+              store: Store<AppState>(AppState(user: null))..add(Injector(repository: _repository)),
+              child: UserReduRxScreen(),
             ),
       ),
     );
