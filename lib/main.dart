@@ -1,12 +1,8 @@
 import 'package:arch_examples/data/repository.dart';
-import 'package:arch_examples/screens/bloc/bloc_provider.dart';
-import 'package:arch_examples/screens/bloc/user_bloc.dart';
 import 'package:arch_examples/screens/bloc/user_bloc_screen.dart';
-import 'package:arch_examples/screens/scoped_model/user_model.dart';
 import 'package:arch_examples/screens/scoped_model/user_model_screen.dart';
 import 'package:arch_examples/screens/vanilla/vanilla_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 void main() => runApp(MyApp());
 
@@ -82,10 +78,7 @@ class HomePage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ScopedModel<UserModel>(
-              model: UserModel(_repository),
-              child: UserModelScreen(),
-            ),
+        builder: (context) => UserModelScreen(_repository),
       ),
     );
   }
@@ -94,10 +87,7 @@ class HomePage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BlocProvider(
-              bloc: UserBloc(_repository),
-              child: UserBlocScreen(),
-            ),
+        builder: (context) => UserBlocScreen(_repository),
       ),
     );
   }
